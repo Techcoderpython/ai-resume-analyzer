@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Resume Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>AI Resume Analyzer</h1>
+            <p class="subtitle">Upload your resume, pick a role, and see how you stack up.</p>
+        </div>
+    </header>
+
+    <main class="site-main">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Simple demo tool &mdash; not a replacement for professional review.</p>
+        </div>
+    </footer>
+</body>
+</html>
