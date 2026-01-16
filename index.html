@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="card">
+    <h2>Analyze Your Resume</h2>
+    <p>Select a target job role and upload your resume as PDF or text.</p>
+
+    {% if error %}
+        <div class="alert alert-error">{{ error }}</div>
+    {% endif %}
+
+    <form action="/" method="post" enctype="multipart/form-data" class="form-grid">
+        <div class="form-group">
+            <label for="job_role">Target Job Role</label>
+            <select id="job_role" name="job_role" required>
+                {% for key in job_roles %}
+                    <option value="{{ key }}">
+                        {% if key == 'software_engineer' %}Software Engineer{% endif %}
+                        {% if key == 'data_scientist' %}Data Scientist{% endif %}
+                        {% if key == 'frontend_developer' %}Frontend Developer{% endif %}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="resume">Resume File (PDF or .txt)</label>
+            <input type="file" id="resume" name="resume" accept=".pdf,.txt,.md,.doc,.docx" required />
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Analyze Resume</button>
+        </div>
+    </form>
+</section>
+{% endblock %}
