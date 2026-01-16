@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="card">
+    <h2>Analysis Results</h2>
+    <p>Target role:
+        {% if job_role == 'software_engineer' %}Software Engineer{% endif %}
+        {% if job_role == 'data_scientist' %}Data Scientist{% endif %}
+        {% if job_role == 'frontend_developer' %}Frontend Developer{% endif %}
+    </p>
+
+    <div class="results-grid">
+        <div>
+            <h3>Matched Skills</h3>
+            {% if matched_skills %}
+                <ul class="tag-list tag-list-success">
+                    {% for skill in matched_skills %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="muted">No direct matches found for this role.</p>
+            {% endif %}
+        </div>
+
+        <div>
+            <h3>Missing Skills (for this role)</h3>
+            {% if missing_skills %}
+                <ul class="tag-list tag-list-warning">
+                    {% for skill in missing_skills %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="muted">You appear to cover all tracked skills for this role.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="other-section">
+        <h3>Other Skills Detected</h3>
+        {% if other_skills %}
+            <ul class="tag-list">
+                {% for skill in other_skills %}
+                    <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="muted">No additional skills detected beyond this role's list.</p>
+        {% endif %}
+    </div>
+
+    <div class="form-actions">
+        <a href="/" class="btn">Analyze Another Resume</a>
+    </div>
+</section>
+{% endblock %}
